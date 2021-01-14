@@ -94,7 +94,9 @@ class _ProductScreenState extends State<ProductScreen> {
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(4.0),
                                 border: Border.all(
-                                  color: size == this.size ? primaryColor : Colors.grey[500],
+                                  color: size == this.size
+                                      ? primaryColor
+                                      : Colors.grey[500],
                                   width: 3.0,
                                 ),
                               ),
@@ -106,7 +108,38 @@ class _ProductScreenState extends State<ProductScreen> {
                         )
                         .toList(),
                   ),
-                )
+                ),
+                SizedBox(
+                  height: 16.0,
+                ),
+                SizedBox(
+                  height: 44.0,
+                  child: RaisedButton(
+                    onPressed: size != null ? () {} : null,
+                    child: Text(
+                      'Adicionar ao Carrinho',
+                      style: TextStyle(fontSize: 18.0),
+                    ),
+                    color: primaryColor,
+                    textColor: Colors.white,
+                  ),
+                ),
+                SizedBox(
+                  height: 16.0,
+                ),
+                Text(
+                  'Descrição',
+                  style: TextStyle(
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                Text(
+                  product.description,
+                  style: TextStyle(
+                    fontSize: 16.0,
+                  ),
+                ),
               ],
             ),
           )
