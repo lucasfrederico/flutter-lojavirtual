@@ -82,7 +82,7 @@ class LoginScreen extends StatelessWidget {
                     height: 44.0,
                     child: RaisedButton(
                       child: Text(
-                        'Criar Conta',
+                        'Entrar',
                         style: TextStyle(
                           fontSize: 18.0,
                         ),
