@@ -2,7 +2,12 @@ import 'package:carousel_pro/carousel_pro.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_lojavirtual/datas/cart_product.dart';
 import 'package:flutter_lojavirtual/datas/product_data.dart';
+import 'package:flutter_lojavirtual/models/cart_model.dart';
+import 'package:flutter_lojavirtual/models/user_model.dart';
+import 'package:flutter_lojavirtual/screens/login_screen.dart';
+import 'package:scoped_model/scoped_model.dart';
 
 class ProductScreen extends StatefulWidget {
   final ProductData product;
@@ -114,14 +119,38 @@ class _ProductScreenState extends State<ProductScreen> {
                 ),
                 SizedBox(
                   height: 44.0,
-                  child: RaisedButton(
-                    onPressed: size != null ? () {} : null,
-                    child: Text(
-                      'Adicionar ao Carrinho',
-                      style: TextStyle(fontSize: 18.0),
-                    ),
-                    color: primaryColor,
-                    textColor: Colors.white,
+                  child: ScopedModelDescendant<UserModel>(
+                    builder: (context, child, model) {
+                      return RaisedButton(
+                        onPressed: size != null
+                            ? () {
+                                if (model.isLoggedIn()) {
+                                  CartProduct cardProduct = CartProduct();
+                                  cardProduct.size = size;
+                                  cardProduct.quantity = 1;
+                                  cardProduct.pid = product.id;
+                                  cardProduct.category = product.category;
+
+                                  CartModel.of(context).addCartItem(cardProduct);
+                                } else {
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (context) => LoginScreen(),
+                                    ),
+                                  );
+                                }
+                              }
+                            : null,
+                        child: Text(
+                          model.isLoggedIn()
+                              ? 'Adicionar ao Carrinho'
+                              : 'Entre para comprar',
+                          style: TextStyle(fontSize: 18.0),
+                        ),
+                        color: primaryColor,
+                        textColor: Colors.white,
+                      );
+                    },
                   ),
                 ),
                 SizedBox(
