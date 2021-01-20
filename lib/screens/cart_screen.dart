@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_lojavirtual/models/cart_model.dart';
 import 'package:flutter_lojavirtual/models/user_model.dart';
 import 'package:flutter_lojavirtual/screens/login_screen.dart';
+import 'package:flutter_lojavirtual/tiles/cart_tile.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 class CartScreen extends StatelessWidget {
@@ -85,6 +86,16 @@ class CartScreen extends StatelessWidget {
                 ),
                 textAlign: TextAlign.center,
               ),
+            );
+          } else {
+            return ListView(
+              children: [
+                Column(
+                  children: model.products.map((product) {
+                    return CartTile(product);
+                  }).toList(),
+                )
+              ],
             );
           }
         },
