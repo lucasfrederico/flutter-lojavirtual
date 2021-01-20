@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_lojavirtual/datas/product_data.dart';
 
-class CarProduct {
+class CartProduct {
   String cid;
 
   String category;
@@ -12,7 +12,7 @@ class CarProduct {
 
   ProductData productData;
 
-  CarProduct.fromDocument(DocumentSnapshot document) {
+  CartProduct.fromDocument(DocumentSnapshot document) {
     cid = document.documentID;
     category = document.data()['category'];
     pid = document.data()['pid'];
