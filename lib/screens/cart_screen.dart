@@ -3,6 +3,7 @@ import 'package:flutter_lojavirtual/models/cart_model.dart';
 import 'package:flutter_lojavirtual/models/user_model.dart';
 import 'package:flutter_lojavirtual/screens/login_screen.dart';
 import 'package:flutter_lojavirtual/tiles/cart_tile.dart';
+import 'package:flutter_lojavirtual/widgets/cart_price.dart';
 import 'package:flutter_lojavirtual/widgets/discount_card.dart';
 import 'package:flutter_lojavirtual/widgets/ship_card.dart';
 import 'package:scoped_model/scoped_model.dart';
@@ -98,7 +99,8 @@ class CartScreen extends StatelessWidget {
                   }).toList(),
                 ),
                 DiscountCard(),
-                ShipCard()
+                ShipCard(),
+                CartPrice(() {})
               ],
             );
           }
