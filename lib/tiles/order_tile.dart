@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -26,18 +28,33 @@ class OrderTile extends StatelessWidget {
             }
 
             return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   'Código do pedido: ${snapshot.data.documentID}',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
                   ),
-                )
+                ),
+                SizedBox(
+                  height: 4.0,
+                ),
+                Text(_buildProductsText(snapshot.data))
               ],
             );
           },
         ),
       ),
     );
+  }
+
+  String _buildProductsText(DocumentSnapshot snapshot) {
+    String text = 'Descrição:\n';
+    for(LinkedHashMap product in snapshot.data()['products']) {
+      text += '${product['quantity']}x ${product['product']['title']} (R\$ ${product['product']['price'].toString()})\n';
+    }
+    text += 'Total: R\$ ${snapshot.data()['totalPrice'].toString()}';
+
+    return text;
   }
 }
