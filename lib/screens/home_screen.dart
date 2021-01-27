@@ -31,19 +31,19 @@ class HomeScreen extends StatelessWidget {
         ),
         Scaffold(
           appBar: AppBar(
-            title: Text('Meus Pedidos'),
-            centerTitle: true,
-          ),
-          drawer: CustomDrawer(_pageController),
-          body: OrdersTab(),
-        ),
-        Scaffold(
-          appBar: AppBar(
             title: Text('Lojas'),
             centerTitle: true,
           ),
           drawer: CustomDrawer(_pageController),
           body: PlacesTab(),
+        ),
+        Scaffold(
+          appBar: AppBar(
+            title: Text('Meus Pedidos'),
+            centerTitle: true,
+          ),
+          drawer: CustomDrawer(_pageController),
+          body: OrdersTab(),
         ),
       ],
     );

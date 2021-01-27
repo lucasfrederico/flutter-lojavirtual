@@ -17,7 +17,7 @@ class PlacesTab extends StatelessWidget {
         return ListView(
           children: snapshot.data.documents
               .map(
-                (docu) => PlaceTile(doc),
+                (doc) => PlaceTile(doc),
               )
               .toList(),
         );
